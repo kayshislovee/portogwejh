@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
-/* Smooth scroll untuk seluruh halaman */
-html {
-  scroll-behavior: smooth;
+html { scroll-behavior: smooth; }
+
+/* Light mode */
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f8faff;
+  --surface: #ffffff;
+  --surface-secondary: #f0f4ff;
+  --border: #e0e8ff;
+  --text: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #dbeafe;
+  --accent-soft-text: #1d4ed8;
+  --shadow: rgba(37, 99, 235, 0.1);
+  --grid-line: rgba(10, 31, 77, 0.1);   /* biru lebih kuat */
+  --orb-1: radial-gradient(circle, rgb(7, 55, 167) 0%, transparent 70%);
+  --orb-2: radial-gradient(circle, rgba(27, 52, 177, 0.562) 0%, transparent 70%);
+  --orb-3: radial-gradient(circle, rgba(46, 31, 105, 0.451) 0%, transparent 70%);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #09090b;
-}
-::-webkit-scrollbar-thumb {
-  background: #3f3f46;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #7c3aed;
+/* Dark mode */
+.dark {
+  --bg: #070724;
+  --bg-secondary: #021128;
+  --surface: #16161d;
+  --surface-secondary: #1c1c25;
+  --border: #ffffff0f;
+  --text: #f1f1f3;
+  --text-secondary: #9898a8;
+  --text-muted: #5a5a6e;
+  --accent: #4f7ef8;
+  --accent-hover: #a4b2d7;
+  --accent-soft: #4f7ef812;
+  --accent-soft-text: #7ba3fa;
+  --shadow: rgba(79, 126, 248, 0.12);
+  --grid-line: rgba(255, 255, 255, 0.11); /* putih tipis */
+  --orb-1: radial-gradient(circle, rgb(71, 72, 107) 0%, transparent 70%);
+  --orb-2: radial-gradient(circle, rgb(75, 129, 197) 0%, transparent 70%);
+  --orb-3: radial-gradient(circle, rgba(116, 132, 180, 0.352) 0%, transparent 70%);
 }
 
-/* Mencegah horizontal scroll */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
+}
+
+*:where([class*="motion-"], svg, svg *, img, video, canvas, input[type="range"]) {
+  transition: none !important;
+}
+
 body {
+  background-color: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
 }
+
+.section-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
+}
+
+.section-pattern > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-dots {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-dots::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--grid-line) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
+}
+
+.section-dots > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Diagonal lines (Projects) ─── */
+.section-diagonal {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-diagonal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--grid-line) 0px,
+    var(--grid-line) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 25%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 25%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
+}
+
+.section-diagonal > * {
+  position: relative;
+  z-index: 1;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }

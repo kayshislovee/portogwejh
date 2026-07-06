@@ -6,11 +6,13 @@ import Skills from "./components/sections/Skills";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import TargetCursor from "./components/ui/cursor";
+import MusicPlayer from "./components/ui/MusicPlayer"; 
 
 function App() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <TargetCursor />
+      <MusicPlayer /> 
       <Navbar />
       <main>
         <Hero />

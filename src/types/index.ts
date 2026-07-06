@@ -9,9 +9,11 @@ export interface Project {
   featured?: boolean;
 }
 
+import type { LucideIcon } from "lucide-react";
+
 export interface Skill {
   name: string;
-  icon: string; // emoji atau URL icon
+  icon: LucideIcon | string;
   category: "Language" | "Framework" | "Tool";
 }
 

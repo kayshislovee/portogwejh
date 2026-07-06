@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { personalInfo } from "../../data/portfolioData";
+import ThemeToggle from "../ui/ThemeToggle";
 
 const navLinks = [
   { label: "Beranda", href: "#hero" },
@@ -48,20 +49,25 @@ const Navbar = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#1a1918]/90 backdrop-blur-md border-b border-white/5"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "color-mix(in srgb, var(--bg) 92%, transparent)" : "transparent",
+        borderBottom: scrolled ? `1px solid var(--border)` : "none",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+      }}
     >
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#hero"
-          onClick={() => handleNavClick("#hero")}
-          className="text-white font-bold text-lg tracking-tight hover:text-amber-400 transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#hero");
+          }}
+          className="font-bold text-lg tracking-tight transition-colors"
+          style={{ color: "var(--text)" }}
         >
           {personalInfo.name.split(" ")[0]}
-          <span className="text-amber-400">.</span>
+          <span style={{ color: "var(--accent)" }}>.</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-1">
@@ -70,31 +76,42 @@ const Navbar = () => {
             return (
               <li key={link.href}>
                 <button
-                  onClick={() => handleNavClick(link.href)}
-                  className={`relative px-4 py-2 text-sm rounded-lg transition-colors duration-200 cursor-pointer ${
-                    isActive ? "text-amber-400" : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-indicator"
-                      className="absolute inset-0 bg-amber-500/10 border border-amber-500/20 rounded-lg"
-                    />
-                  )}
-                </button>
+  onClick={() => handleNavClick(link.href)}
+  className="relative px-4 py-2 text-sm rounded-lg transition-colors duration-200 cursor-pointer"
+  style={{ color: isActive ? "var(--accent)" : "var(--text-secondary)" }}
+>
+  {isActive && (
+    <motion.span
+      layoutId="nav-indicator"
+      className="absolute inset-0 rounded-lg"
+      style={{
+        background: "var(--accent-soft)",
+        border: `1px solid color-mix(in srgb, var(--accent) 20%, transparent)`,
+        zIndex: 0,
+      }}
+      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+    />
+  )}
+  <span style={{ position: "relative", zIndex: 1 }}>
+    {link.label}
+  </span>
+</button>
               </li>
             );
           })}
         </ul>
 
-        <button
-          className="md:hidden text-gray-400 hover:text-white p-2 transition-colors"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="md:hidden p-2 transition-colors"
+            style={{ color: "var(--text-secondary)" }}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -103,14 +120,15 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1a1918]/95 backdrop-blur-md border-b border-white/5"
+            style={{ background: "var(--bg)", borderBottom: `1px solid var(--border)` }}
           >
             <ul className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="w-full text-left px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                    className="w-full text-left px-4 py-3 text-sm rounded-lg transition-colors"
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {link.label}
                   </button>
