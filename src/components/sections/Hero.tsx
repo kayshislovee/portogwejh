@@ -30,7 +30,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="section-pattern min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{ background: "var(--bg)" }}
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -155,7 +155,7 @@ className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight trackin
               </div>
               
              
-              
+              <span className="hidden sm:block self-center w-1 h-1 rounded-full" style={{ background: "var(--border)" }} />
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
                 <Sparkles size={14} style={{ color: "#38bdf8" }} />
                 <span>{t("hero.role")}</span>
