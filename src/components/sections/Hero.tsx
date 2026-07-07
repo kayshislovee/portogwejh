@@ -30,7 +30,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="section-pattern min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{ background: "var(--bg)" }}
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

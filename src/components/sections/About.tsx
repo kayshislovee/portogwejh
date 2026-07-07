@@ -20,11 +20,7 @@ const About = () => {
   ];
 
   return (
-    <section
-      id="about"
-      className="section-dots py-24 px-6"
-      style={{ background: "var(--bg-secondary)" }}
-    >
+   <section id="about" className="section-dots py-24 px-6" style={{ background: "var(--bg-secondary)" }}>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[100px]" style={{ background: "var(--orb-1)", opacity: 0.5 }} />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full blur-[80px]" style={{ background: "var(--orb-2)", opacity: 0.4 }} />
