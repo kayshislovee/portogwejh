@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Twitter, Mail, MapPin, Code2, Sparkles } from "lucide-react";
+import { Github, Linkedin, Instagram,  Mail, MapPin, Code2, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { personalInfo } from "../../data/portfolioData";
 import { useState } from "react";
 
 const socials = [
-  { icon: <Github size={18} />, href: "https://github.com/username", label: "GitHub" },
-  { icon: <Linkedin size={18} />, href: "https://linkedin.com/in/username", label: "LinkedIn" },
-  { icon: <Instagram size={18} />, href: "https://instagram.com/username", label: "Instagram" },
-  { icon: <Twitter size={18} />, href: "https://twitter.com/username", label: "Twitter" },
+  { icon: <Github size={18} />, href: "https://github.com/kayshislovee", label: "GitHub" },
+  { icon: <Linkedin size={18} />, href: "https://www.linkedin.com/in/ilham-offc-75b74541b/", label: "LinkedIn" },
+  { icon: <Instagram size={18} />, href: "https://www.instagram.com/bruh_hamm/", label: "Instagram" },
+
 ];
 
 const Footer = () => {
