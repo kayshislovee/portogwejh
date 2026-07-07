@@ -6,8 +6,7 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "SiTugas",
-    description:
-      "Website untuk mengelola tugas siswa. Fitur termasuk manajemen tugas, pengumpulan, dan penilaian.",
+       description: "project.situgas_desc",
     image: new URL("../assets/images/situgas.png", import.meta.url).href,
     techStack: ["Laravel", "PHP","HTML","CSS","JavaScript", "MySQL"],
     githubUrl: "https://github.com/kayshislovee/SiTugas.git",
@@ -17,8 +16,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: "Lenovo Arena",
-    description:
-      "Website promosi untuk berbagai produk laptop dari Lenovo. Menampilkan katalog produk dan spesifikasi",
+    description: "project.lenovo_desc",
     image: new URL("../assets/images/weblenovo.png", import.meta.url).href,
     techStack: ["HTML","CSS"],
     githubUrl: "https://github.com/kayshislovee/Lenovo-Arena-Web.git",
@@ -27,8 +25,7 @@ export const projects: Project[] = [
   {
     id: 3,
     title: "Web Informatif Jurusan DPIB",
-    description:
-      "Website informatif untuk jurusan DPIB. Menyediakan informasi tentang program studi, kegiatan, dan berita terbaru.",
+    description: "project.dpib_desc",
     image: new URL("../assets/images/webdpib.png", import.meta.url).href,
     techStack: ["HTML","CSS","JavaScript","PHP"],
     githubUrl: "https://github.com/kayshislovee/Project-Web-informatif-Jurusan-DPIB.git",
@@ -37,8 +34,7 @@ export const projects: Project[] = [
   {
     id: 4,
     title: "Play Chess",
-    description:
-      "Website permainan catur 1 lawan 1. Pemain dapat bermain melawan teman dengan antarmuka yang sederhana dan responsif.",
+    description: "project.chess_desc",
     image: new URL("../assets/images/chess.jpeg", import.meta.url).href,
     techStack: ["HTML","CSS","JavaScript", "MySQL"],
     githubUrl: "https://github.com/kayshislovee/ProjekGame-chess-.git",
@@ -48,8 +44,7 @@ export const projects: Project[] = [
   {
     id: 5,
     title: "PetVerse",
-    description:
-      "Game berbasis 2D.Pemain dapat mengendalikan karakter hewan dan makan dan menghindari bomb. Tujuan permainan adalah bertahan hidup selama mungkin sambil mengumpulkan skor.",
+    description: "project.petverse_desc",
     image: new URL("../assets/images/petverse.png", import.meta.url).href,
     techStack: ["Python","Pygame"],
     githubUrl: "https://github.com/kayshislovee/SiTugas.git",
@@ -82,7 +77,7 @@ export const categoryInfo: Record<string, { icon: LucideIcon; description: strin
   },
   Framework: {
     icon: Zap,    
-    description: "Tools andalan untuk membangun aplikasi modern.",
+    description: "Framework andalan untuk membangun aplikasi modern.",
   },
   Tool: {
     icon: Palette,
@@ -101,7 +96,7 @@ export const personalInfo = {
   name: "Ilham Fathurohman",
   role: "Frontend Developer",
   tagline: "Saya suka membuat situs web yang tidak hanya keren dilihat, tapi juga enak dipakai dan cepat diakses",
-  about: `Halo! Saya Ilham Fathurohman, seorang Frontend Developer yang bersemangat dalam menciptakan pengalaman web yang menarik dan responsif. Dengan keahlian dalam HTML, CSS, JavaScript, dan React, saya fokus pada pengembangan antarmuka pengguna yang intuitif dan estetis. Saya selalu berusaha untuk mengikuti tren terbaru dalam desain web dan teknologi frontend, serta berkomitmen untuk terus belajar dan meningkatkan keterampilan saya. Mari kita bekerja sama untuk membangun aplikasi web yang luar biasa!`,
+ 
   location: "Bali, Indonesia",
   cvUrl: "/cv-kayshii.pdf",
 };

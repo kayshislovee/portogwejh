@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { socialLinks } from "../../data/portfolioData";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -9,22 +10,17 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <section
       id="contact"
       className="section-pattern py-24 px-6"
       style={{ background: "var(--bg)" }}
     >
-      {/* Orb */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px]"
-          style={{ background: "var(--orb-1)", opacity: 0.35 }}
-        />
-        <div
-          className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full blur-[80px]"
-          style={{ background: "var(--orb-2)", opacity: 0.3 }}
-        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: "var(--orb-1)", opacity: 0.35 }} />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full blur-[80px]" style={{ background: "var(--orb-2)", opacity: 0.3 }} />
       </div>
 
       <div className="max-w-2xl mx-auto text-center">
@@ -35,31 +31,29 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--accent)" }}>
-            Kontak
+            {t("contact.label")}
           </p>
-          <h2 className="text-4xl font-bold mb-5" style={{ color: "var(--text)" }}>Mari berkolaborasi!</h2>
+          <h2 className="text-4xl font-bold mb-5" style={{ color: "var(--text)" }}>
+            {t("contact.title")}
+          </h2>
           <p className="leading-relaxed mb-10" style={{ color: "var(--text-secondary)" }}>
-            Saya terbuka untuk diskusi proyek, kesempatan kerja, atau sekadar ngobrol soal teknologi.
+            {t("contact.subtitle")}
           </p>
 
           <a
-            href="mailto:kamu@email.com"
+            href="mailto:ilham.offc1012@email.com"
             className="inline-flex items-center gap-2 px-8 py-4 font-bold rounded-full transition-all duration-300 mb-12"
-            style={{
-              background: "var(--accent)",
-              color: "#fff",
-              boxShadow: `0 8px 24px var(--shadow)`,
-            }}
+            style={{ background: "var(--accent)", color: "#fff", boxShadow: `0 8px 24px var(--shadow)` }}
             onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = "var(--accent-hover)"}
             onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = "var(--accent)"}
           >
             <Send size={16} />
-            Kirim Email
+            {t("contact.send")}
           </a>
 
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
-            <span className="text-sm" style={{ color: "var(--text-muted)" }}>atau temukan saya di</span>
+            <span className="text-sm" style={{ color: "var(--text-muted)" }}>{t("contact.or")}</span>
             <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
           </div>
 
@@ -72,11 +66,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
                 className="flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium border transition-all duration-200"
-                style={{
-                  background: "var(--surface)",
-                  borderColor: "var(--border)",
-                  color: "var(--text-secondary)",
-                }}
+                style={{ background: "var(--surface)", borderColor: "var(--border)", color: "var(--text-secondary)" }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
                   el.style.borderColor = "color-mix(in srgb, var(--accent) 40%, transparent)";

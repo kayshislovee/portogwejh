@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { personalInfo } from "../../data/portfolioData";
 import ThemeToggle from "../ui/ThemeToggle";
-
-const navLinks = [
-  { label: "Beranda", href: "#hero" },
-  { label: "Tentang", href: "#about" },
-  { label: "Keahlian", href: "#skills" },
-  { label: "Proyek", href: "#projects" },
-  { label: "Kontak", href: "#contact" },
-];
+import LanguageSwitcher from "../ui/LanguageSwitcher.tsx";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t("nav.home"), href: "#hero" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.projects"), href: "#projects" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -24,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
+    const sectionIds = ["hero", "about", "skills", "projects", "contact"];
     const observers: IntersectionObserver[] = [];
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
@@ -59,10 +62,7 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#hero"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#hero");
-          }}
+          onClick={() => handleNavClick("#hero")}
           className="font-bold text-lg tracking-tight transition-colors"
           style={{ color: "var(--text)" }}
         >
@@ -76,32 +76,31 @@ const Navbar = () => {
             return (
               <li key={link.href}>
                 <button
-  onClick={() => handleNavClick(link.href)}
-  className="relative px-4 py-2 text-sm rounded-lg transition-colors duration-200 cursor-pointer"
-  style={{ color: isActive ? "var(--accent)" : "var(--text-secondary)" }}
->
-  {isActive && (
-    <motion.span
-      layoutId="nav-indicator"
-      className="absolute inset-0 rounded-lg"
-      style={{
-        background: "var(--accent-soft)",
-        border: `1px solid color-mix(in srgb, var(--accent) 20%, transparent)`,
-        zIndex: 0,
-      }}
-      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-    />
-  )}
-  <span style={{ position: "relative", zIndex: 1 }}>
-    {link.label}
-  </span>
-</button>
+                  onClick={() => handleNavClick(link.href)}
+                  className="relative px-4 py-2 text-sm rounded-lg transition-colors duration-200 cursor-pointer"
+                  style={{ color: isActive ? "var(--accent)" : "var(--text-secondary)" }}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-indicator"
+                      className="absolute inset-0 rounded-lg"
+                      style={{
+                        background: "var(--accent-soft)",
+                        border: `1px solid color-mix(in srgb, var(--accent) 20%, transparent)`,
+                        zIndex: 0,
+                      }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                    />
+                  )}
+                  <span style={{ position: "relative", zIndex: 1 }}>{link.label}</span>
+                </button>
               </li>
             );
           })}
         </ul>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             className="md:hidden p-2 transition-colors"

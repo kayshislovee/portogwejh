@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import "./i18n/index"; // 👈 pastikan baris ini ada
 import App from "./App.tsx";
 import { ThemeProvider } from "./context/ThemeContext";
 

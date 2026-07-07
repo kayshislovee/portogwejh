@@ -9,16 +9,11 @@ interface FlipCardProps {
 
 const FlipCard: React.FC<FlipCardProps> = ({ images, interval = 4000 }) => {
   const [current, setCurrent] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
     if (images.length <= 1) return;
     const timer = setInterval(() => {
-      setIsFlipping(true);
-      setTimeout(() => {
-        setCurrent((prev) => (prev + 1) % images.length);
-        setIsFlipping(false);
-      }, 400);
+      setCurrent((prev) => (prev + 1) % images.length);
     }, interval);
     return () => clearInterval(timer);
   }, [images.length, interval]);

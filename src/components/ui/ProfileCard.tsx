@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FlipCard from "./FlipCard";
-import { personalInfo } from "../../data/portfolioData";
 
 interface ProfileCardProps {
   images: string[];
@@ -26,11 +25,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ images }) => {
     >
       <div
         className="h-full w-full rounded-[24px] overflow-hidden relative"
-        style={{
-          background: "var(--surface-secondary)",
-          filter: hovered ? "grayscale(0)" : "grayscale(1)",
-          transition: "filter 0.7s ease",
-        }}
+        style={{ background: "var(--surface-secondary)" }}
       >
         <FlipCard images={images} interval={3000} />
 
@@ -39,20 +34,23 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ images }) => {
         <AnimatePresence>
           {hovered && (
             <motion.div
-              className="absolute bottom-5 left-5 right-5 backdrop-blur-md p-4 rounded-xl border"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 16 }}
-              transition={{ type: "spring", stiffness: 200, damping: 22 }}
-              style={{ background: "var(--bg)dd", borderColor: "var(--border)" }}
-            >
-              <p className="font-medium text-sm" style={{ color: "var(--text)" }}>
-                {personalInfo.name}
-              </p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-                {personalInfo.role}
-              </p>
-            </motion.div>
+  className="absolute bottom-0 left-0 right-0 backdrop-blur-md px-5 py-4 border-t"
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: 10 }}
+  transition={{ type: "spring", stiffness: 200, damping: 22 }}
+  style={{
+    background: "rgba(20,20,30,0.75)",
+    borderColor: "rgba(255,255,255,0.08)",
+  }}
+>
+  <p className="font-semibold text-sm !text-white">
+    Ilham Fathurohman
+  </p>
+  <p className="text-xs !text-white/60 mt-0.5">
+    Frontend Developer
+  </p>
+</motion.div>
           )}
         </AnimatePresence>
       </div>

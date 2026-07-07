@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import type { Project } from "../../types";
 
 interface ProjectCardProps {
@@ -8,6 +9,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -65,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           {project.title}
         </h3>
         <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-muted)" }}>
-          {project.description}
+          {t(project.description)}
         </p>
         <div className="flex flex-wrap gap-2">
           {project.techStack.map((tech) => (

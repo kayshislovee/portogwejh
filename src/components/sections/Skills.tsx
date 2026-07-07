@@ -1,33 +1,33 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { skills, categoryInfo } from "../../data/portfolioData";
 import type { Skill } from "../../types";
 
-
-
 const categories: Skill["category"][] = ["Language", "Framework", "Tool"];
-const categoryLabel: Record<Skill["category"], string> = {
-  Language: "Languages",
-  Framework: "Frameworks",
-  Tool: "Design Tools",
-};
 
 const Skills = () => {
+  const { t } = useTranslation();
+
+  const categoryLabel: Record<Skill["category"], string> = {
+    Language: "Languages",
+    Framework: "Frameworks",
+    Tool: "Tools",
+  };
+
+  const categoryDesc: Record<Skill["category"], string> = {
+    Language: t("skills.language_desc"),
+    Framework: t("skills.framework_desc"),
+    Tool: t("skills.tool_desc"),
+  };
+
   return (
-  <section id="skills" className="py-24 px-6 relative overflow-hidden" style={{ background: "var(--bg)" }}>
-    
-      {/* Orb */}
+    <section id="skills" className="py-24 px-6 relative overflow-hidden" style={{ background: "var(--bg)" }}>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-1/2 left-0 w-[350px] h-[350px] rounded-full blur-[100px]"
-          style={{ background: "var(--orb-2)", opacity: 0.5 }}
-        />
-        <div
-          className="absolute top-1/4 right-0 w-[300px] h-[300px] rounded-full blur-[80px]"
-          style={{ background: "var(--orb-3)", opacity: 0.4 }}
-        />
+        <div className="absolute top-1/2 left-0 w-[350px] h-[350px] rounded-full blur-[100px]" style={{ background: "var(--orb-2)", opacity: 0.5 }} />
+        <div className="absolute top-1/4 right-0 w-[300px] h-[300px] rounded-full blur-[80px]" style={{ background: "var(--orb-3)", opacity: 0.4 }} />
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,15 +36,18 @@ const Skills = () => {
           className="text-center mb-16"
         >
           <p className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--accent)" }}>
-            Keahlian
+            {t("skills.label")}
           </p>
-          <h2 className="text-4xl font-bold" style={{ color: "var(--text)" }}>Tech Stack saya</h2>
+          <h2 className="text-4xl font-bold" style={{ color: "var(--text)" }}>
+            {t("skills.title")}
+          </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {categories.map((category, catIdx) => {
             const filtered = skills.filter((s) => s.category === category);
             const info = categoryInfo[category];
+            const Icon = info.icon as unknown as React.ComponentType<any>;
 
             return (
               <motion.div
@@ -80,7 +83,7 @@ const Skills = () => {
                     className="w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-bold transition-all duration-300 group-hover:scale-110"
                     style={{ background: "var(--accent-soft)", color: "var(--accent)" }}
                   >
-                    {typeof info.icon === "string" ? info.icon : <info.icon />}
+                    <Icon size={20} />
                   </div>
                 </div>
 
@@ -88,7 +91,7 @@ const Skills = () => {
                   {categoryLabel[category]}
                 </h3>
                 <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-muted)" }}>
-                  {info.description}
+                  {categoryDesc[category]}
                 </p>
 
                 <div className="flex flex-wrap gap-2">
